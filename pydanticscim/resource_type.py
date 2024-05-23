@@ -1,11 +1,10 @@
 from typing import List, Optional
 
-from pydantic import AnyUrl, BaseModel, Extra, Field
+from pydantic import ConfigDict, AnyUrl, BaseModel, Field
 
 
 class SchemaExtension(BaseModel):
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     schema_: AnyUrl = Field(
         ..., alias="schema", description="The URI of a schema extension."
@@ -17,8 +16,7 @@ class SchemaExtension(BaseModel):
 
 
 class ResourceType(BaseModel):
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     id: Optional[str] = Field(
         None,
